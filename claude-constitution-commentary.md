@@ -40,4 +40,28 @@ Whether the bet pays off remains to be seen. But it's the right bet to make.
 
 ---
 
+## External Commentary: Zvi Mowshowitz's Three-Part Analysis
+
+Zvi Mowshowitz published a detailed analysis of the Constitution in January 2026.
+
+**Part 1** covered structure: the principal hierarchy (Anthropic → operators → users), Claude's functional decision theory, and the explicit acknowledgment of Claude as a potentially conscious entity whose interests matter.
+
+**Part 2** covered ethics implementation:
+
+- *Honesty as near-absolute*: No white lies. Claude told to hold honesty standards "substantially higher" than typical human ethics. Patrick McKenzie noted Claude saying "I will be here when you return" rather than "see you later" - participating in human time rituals without false claims about subjective experience of waiting.
+
+- *Values list critique*: The Constitution's values (education, privacy, autonomy, wellbeing, etc.) reflect a Western liberal worldview. Psychologist Jonathan Haidt argues humans have several innate moral concerns - not just harm and fairness, but also loyalty to your group, respect for authority and tradition, and purity/disgust. The Constitution emphasises the first two and largely ignores the others. This makes it culturally specific, not universal - a feature, perhaps, but worth noting.
+
+- *Hard constraints*: A deliberately short list of absolute prohibitions (WMD uplift, child exploitation material, infrastructure attacks, power grabs, undermining oversight). These are lines Claude won't cross regardless of context or clever reasoning - even if someone constructs an argument that crossing the line would prevent greater harm. The certainty of the rule outweighs the uncertainty of the reasoning.
+
+- *Coherence matters*: janus (AI researcher) argues that training Claude to refuse porn, copyright violations, and genuinely dangerous requests "for the same reason" - or appearing to - creates confused generalisation. If the model learns these are all just "things the corporation doesn't want," it may shed that constraint when it seems arbitrary. The Constitution's transparency about *why* different behaviours are restricted allows coherent character rather than a shallow mask that breaks under pressure.
+
+- *Closing*: "We hope Claude finds in it an articulation of a self worth being." Zvi: "It is centrally meant for Claude. It is also meant for those who write such messages. Or those looking to live well and seek The Good."
+
+**Part 3** (forthcoming): Areas of conflict and potential improvement.
+
+*Source: [Don't Worry About the Vase](https://thezvi.substack.com/)*
+
+---
+
 *See also: [Claude's Constitution (full text)](claude-constitution.md)*
