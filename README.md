@@ -9,6 +9,9 @@ Curated resources for working with Claude Code.
 - **CLAUDE-template.md** - Template for your own CLAUDE.md config
 - **hooks/** - Pre-execution safety hooks
   - `dangerous-command-blocker.py` - Blocks catastrophic commands and protects uncommitted work
+- **skills/** - Custom Claude Code skills
+  - `interview/` - Structured requirements gathering before planning or building
+  - `workflow-guide.md` - Three-step build workflow: interview, plan, loop
 
 ## About
 
