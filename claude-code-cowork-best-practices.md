@@ -161,7 +161,49 @@ Then later: `claude --resume auth-refactor`
 
 ---
 
-## 4. The @ Syntax for Adding Files
+## 4. Context Management — Staying Within Limits
+
+### The Problem
+
+Every message, file read, and tool result adds to your session's context window. When it fills up, Claude starts compressing older messages automatically — which can lose important details from earlier in the conversation.
+
+### Checking Your Usage
+
+```
+> /context
+```
+
+Shows how much of your context window you've used. Check this when Claude starts forgetting things you discussed earlier.
+
+### The `/compact` Command
+
+When context is getting full, run:
+
+```
+> /compact
+```
+
+Claude summarises the conversation so far into a compressed form, freeing up space. You keep the key decisions and context without the full transcript.
+
+**When to compact:**
+- Before starting a new phase of work in the same session
+- When `/context` shows you're above 60-70%
+- When Claude seems to forget earlier discussion
+
+### Better Strategy: Fresh Sessions
+
+Rather than compacting repeatedly, start new sessions for distinct tasks:
+
+```bash
+claude          # New session for a new task
+claude -c       # Continue when it's the same task
+```
+
+Compaction is a pressure valve, not a workflow. If you're compacting often, you're probably doing too much in one session.
+
+---
+
+## 5. The @ Syntax for Adding Files
 
 ### What It Does
 
@@ -204,7 +246,7 @@ If you need API details, read docs/complete-api-reference.md
 
 ---
 
-## 5. Plan Mode — Going Back and Forth
+## 6. Plan Mode — Going Back and Forth
 
 ### What It Is
 
@@ -248,13 +290,32 @@ Claude: Updated plan:
 You: Perfect, go ahead and implement.
 ```
 
+### Challenging the Plan
+
+When Claude proposes something and you're not sure about it, push back:
+
+```
+Claude: I'll modify the database schema to add a new column...
+
+You: Wait — explain why you're changing the schema. What problem
+     does this solve and what are the alternatives?
+
+Claude: [Explains reasoning, alternatives, and trade-offs]
+```
+
+Other useful prompts:
+- "What could go wrong with this approach?"
+- "What are you assuming here?"
+- "Is there a simpler way to do this?"
+- "Show me the specific lines you're changing before you change them"
+
 ### Why This Matters
 
 Without planning, Claude tends to jump straight into coding and may build the wrong thing. Planning catches misunderstandings *before* you waste time on incorrect implementations.
 
 ---
 
-## 6. Extended Thinking (Ultrathink)
+## 7. Extended Thinking (Ultrathink)
 
 ### What It Is
 
@@ -293,7 +354,7 @@ Just include the word in your prompt:
 
 ---
 
-## 6b. Prompting Strategy: Name the Solution
+## 8. Prompting Strategy: Name the Solution
 
 ### The Approach
 
@@ -325,7 +386,7 @@ You provide the judgment ("this should use caching"), Claude provides the implem
 
 ---
 
-## 7. Hooks — Automating Repeated Tasks
+## 9. Hooks — Automating Repeated Tasks
 
 ### What They Are (Beginner Explanation)
 
@@ -379,13 +440,7 @@ When Claude edits any file, automatically run Prettier:
 
 ### Pre-Built Hook: Dangerous Command Blocker
 
-Want to skip permission prompts but still block dangerous commands like `rm -rf`? Install this pre-built hook:
-
-```bash
-npx claude-code-templates@latest --hook=security/dangerous-command-blocker --yes
-```
-
-This lets Claude work autonomously while preventing accidental file deletion.
+Want to skip permission prompts but still block dangerous commands like `rm -rf`? See the [dangerous-command-blocker](hooks/dangerous-command-blocker.py) in this repo for a multi-level safety hook that protects uncommitted work, blocks catastrophic commands, and warns on suspicious patterns.
 
 ### For Beginners
 
@@ -393,7 +448,7 @@ You don't need hooks to use Claude Code effectively. They're a power feature for
 
 ---
 
-## 8. Subagents — Parallel Workers
+## 10. Subagents — Parallel Workers
 
 ### What They Are (Beginner Explanation)
 
@@ -448,7 +503,60 @@ Like hooks, subagents are a power feature. Start by just using Claude normally. 
 
 ---
 
-## 9. Permission Rules Explained
+## 11. Skills — Custom Commands for Repeated Workflows
+
+### What They Are
+
+Skills are reusable prompts that you invoke like slash commands. Where CLAUDE.md gives Claude passive knowledge ("here's how this project works"), skills give it active playbooks — step-by-step instructions for specific tasks.
+
+### How to Use Them
+
+Type `/` followed by the skill name:
+
+```
+> /interview
+Claude: [Runs structured requirements gathering]
+
+> /commit
+Claude: [Follows your commit workflow]
+```
+
+### Built-in vs Custom Skills
+
+Claude Code ships with built-in skills. You can also create your own — they're just markdown files in a specific location:
+
+```
+~/.claude/skills/<name>/SKILL.md      # Available in all projects
+.claude/skills/<name>/SKILL.md        # Available in this project only
+```
+
+### What Makes a Good Skill
+
+A skill should encode a **workflow you'd otherwise have to explain every time**:
+
+- **Interview skill:** Structured requirements gathering before building — asks the right questions in the right order
+- **Commit skill:** Enforces your commit message format, runs checks, pushes
+- **Debug skill:** Systematic debugging methodology instead of ad-hoc guessing
+
+### Example: The Build Workflow
+
+A three-step workflow for non-trivial tasks:
+
+```
+/interview  →  Gather requirements (what, constraints, edge cases)
+/plan       →  Design the approach, get approval
+/implement  →  Build it, iterating until done
+```
+
+Each step produces output that feeds the next. See [workflow-guide.md](skills/workflow-guide.md) for details.
+
+### For Beginners
+
+Start without custom skills. When you notice yourself giving Claude the same multi-step instructions repeatedly, that's a skill waiting to be extracted.
+
+---
+
+## 12. Permission Rules Explained
 
 ### What Those Cryptic Lines Mean
 
@@ -511,43 +619,7 @@ The default settings are fine for most people. Only customize if:
 
 ---
 
-## 10. Asking Claude to Justify Its Actions
-
-When Claude proposes something and you're not sure about it, just ask:
-
-```
-Claude: I'll modify the database schema to add a new column...
-
-You: Wait — explain why you're changing the schema. What problem
-     does this solve and what are the alternatives?
-
-Claude: [Explains reasoning, alternatives, and trade-offs]
-```
-
-Other useful prompts:
-- "What could go wrong with this approach?"
-- "What are you assuming here?"
-- "Is there a simpler way to do this?"
-- "Show me the specific lines you're changing before you change them"
-
----
-
-## Quick Reference: Essential Commands
-
-| Command | What It Does |
-|---------|--------------|
-| `/init` | Create initial CLAUDE.md for your project |
-| `/memory` | Edit your CLAUDE.md files |
-| `/context` | See how much context you've used |
-| `/clear` | Reset context (start fresh) |
-| `/hooks` | Set up automation rules |
-| `/agents` | Create subagents |
-| `/permissions` | Configure permission rules |
-| `/rename` | Name your session for easy resuming |
-
----
-
-## 11. Sandbox Mode — Safe Autonomous Execution
+## 13. Sandbox Mode — Safe Autonomous Execution
 
 ### The Problem It Solves
 
@@ -602,7 +674,7 @@ Start without sandboxing. If you find yourself:
 
 ---
 
-## 12. Running Multiple Sessions in Parallel
+## 14. Running Multiple Sessions in Parallel
 
 ### Why You'd Want This
 
@@ -615,9 +687,21 @@ Claude works one thing at a time in a single session. But you might want:
 
 If two Claudes edit the same file simultaneously, they'll overwrite each other. You need separate workspaces.
 
-### Method 1: Git Worktrees (Best for Code Projects)
+### Method 1: Built-in Worktrees (Easiest)
 
-Git worktrees let you check out multiple branches simultaneously, each in its own folder.
+Claude Code has built-in worktree support. Type `/worktree` or ask Claude to work in isolation:
+
+```
+> /worktree
+Claude: Created worktree on branch worktree-feature-auth
+        Working directory: .claude/worktrees/feature-auth
+```
+
+This creates an isolated copy of your repo where Claude can work without affecting your main branch. When you're done, the worktree can be merged or discarded.
+
+### Method 2: Manual Git Worktrees
+
+For more control, create worktrees yourself:
 
 ```bash
 # Create a worktree for feature work
@@ -634,7 +718,7 @@ git worktree add ../my-project-bugfix bugfix-branch
 
 Open a terminal in each folder, run `claude` in each. They're completely independent.
 
-### Method 2: Multiple Terminal Tabs/Panes
+### Method 3: Multiple Terminal Tabs/Panes
 
 **In VS Code:**
 - Terminal → New Terminal (or `Ctrl+Shift+``)
@@ -649,11 +733,9 @@ tmux new-session -s claude2
 
 Sessions persist even if you close your laptop.
 
-### Method 3: Claude Desktop App
+### Method 4: Claude Desktop App and Web
 
 The Claude desktop app has built-in support for parallel sessions with git worktrees. It manages the worktree creation for you.
-
-### Method 4: Claude Code on the Web
 
 The web version (claude.ai/code) runs in cloud sandboxes. You can have multiple browser tabs, each with its own session.
 
@@ -672,7 +754,7 @@ Start with one session. Parallel sessions are for when:
 
 ---
 
-## 13. Updating CLAUDE.md During Conversation
+## 15. Updating CLAUDE.md During Conversation
 
 ### The # Key Shortcut
 
@@ -717,7 +799,7 @@ Every time you find yourself repeating something to Claude, that's a sign to sav
 
 ---
 
-## 14. MCP Servers — Connecting Claude to External Tools
+## 16. MCP Servers — Connecting Claude to External Tools
 
 ### What MCP Is (Plain English)
 
@@ -787,16 +869,18 @@ Start without it. Add MCP servers when you have a specific need.
 | `/init` | Create initial CLAUDE.md for your project |
 | `/memory` | Edit your CLAUDE.md files |
 | `/context` | See how much context you've used |
+| `/compact` | Compress conversation to free up context |
 | `/clear` | Reset context (start fresh) |
 | `/sandbox` | Configure sandbox boundaries |
 | `/hooks` | Set up automation rules |
 | `/agents` | Create subagents |
 | `/permissions` | Configure permission rules |
 | `/rename` | Name your session for easy resuming |
+| `/worktree` | Create isolated workspace for parallel work |
 
 ---
 
-## 15. Avoiding the Setup Trap
+## 17. Avoiding the Setup Trap
 
 ### The Problem
 
