@@ -185,6 +185,14 @@ When context is getting full, run:
 
 Claude summarises the conversation so far into a compressed form, freeing up space. You keep the key decisions and context without the full transcript.
 
+You can pass an instruction to tell Claude what to prioritise when summarising:
+
+```
+> /compact keep the details of the authentication refactor
+```
+
+This ensures important context (like a feature you're actively building) survives the compaction rather than being condensed away.
+
 **When to compact:**
 - Before starting a new phase of work in the same session
 - When `/context` shows you're above 60-70%
