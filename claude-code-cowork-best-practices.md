@@ -315,37 +315,27 @@ Without planning, Claude tends to jump straight into coding and may build the wr
 
 ---
 
-## 7. Extended Thinking (Ultrathink)
+## 7. Extended Thinking and Effort Levels
 
 ### What It Is
 
-A way to ask Claude to think more deeply before responding. It allocates more computational effort to complex problems.
+Extended thinking is now enabled by default for all supported Claude models (31,999 token budget). You no longer need magic keywords like "ultrathink" or "think hard" - those were deprecated in January 2026 and have no effect.
 
-### The Levels
+### How to Control Reasoning Depth
 
-```
-"think"        → Basic extra consideration
-"think hard"   → More thorough analysis
-"think harder" → Deep analysis
-"ultrathink"   → Maximum reasoning depth
-```
-
-### How to Use It
-
-Just include the word in your prompt:
+Use the `/effort` command to set the thinking level:
 
 ```
-> ultrathink: How should we architect the authentication system
-  to handle both OAuth and traditional login while keeping the
-  codebase maintainable?
-
-> think hard about the edge cases in this payment processing logic
-
-> I need you to think harder about potential race conditions in
-  this concurrent code
+/effort low     → Fast responses, minimal reasoning overhead
+/effort medium  → Balanced (default for most tasks)
+/effort high    → Deep analysis, maximum reasoning depth
 ```
 
-### When to Use It
+The `/model` command selects which model to use. With Opus 4.6, thinking uses adaptive reasoning that dynamically allocates tokens based on your chosen effort level.
+
+For fine-grained control, the `MAX_THINKING_TOKENS` environment variable overrides the default budget (up to 63,999 on 64K output models).
+
+### When to Increase Effort
 
 - Complex architectural decisions
 - Tricky debugging where the cause isn't obvious
