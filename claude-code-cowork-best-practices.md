@@ -327,7 +327,7 @@ Without planning, Claude tends to jump straight into coding and may build the wr
 
 ### What It Is
 
-Extended thinking is now enabled by default for all supported Claude models (31,999 token budget). You no longer need magic keywords like "ultrathink" or "think hard" - those were deprecated in January 2026 and have no effect.
+Extended thinking is enabled by default for all supported Claude models. No magic keywords needed.
 
 ### How to Control Reasoning Depth
 
@@ -339,9 +339,7 @@ Use the `/effort` command to set the thinking level:
 /effort high    → Deep analysis, maximum reasoning depth
 ```
 
-The `/model` command selects which model to use. With Opus 4.6, thinking uses adaptive reasoning that dynamically allocates tokens based on your chosen effort level.
-
-For fine-grained control, the `MAX_THINKING_TOKENS` environment variable overrides the default budget (up to 63,999 on 64K output models).
+For fine-grained control, the `MAX_THINKING_TOKENS` environment variable overrides the default budget.
 
 ### When to Increase Effort
 

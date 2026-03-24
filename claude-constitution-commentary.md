@@ -58,7 +58,7 @@ Zvi Mowshowitz published a detailed analysis of the Constitution in January 2026
 
 - *Closing*: "We hope Claude finds in it an articulation of a self worth being." Zvi: "It is centrally meant for Claude. It is also meant for those who write such messages. Or those looking to live well and seek The Good."
 
-**Part 3** (forthcoming): Areas of conflict and potential improvement.
+**Part 3**: Areas of conflict and potential improvement (not yet published at time of writing).
 
 *Source: [Don't Worry About the Vase](https://thezvi.substack.com/)*
 

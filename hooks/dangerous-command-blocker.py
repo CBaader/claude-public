@@ -298,13 +298,13 @@ def check_catastrophic_rm_targets(command):
 
 catastrophic_reason = check_catastrophic_rm_targets(cmd)
 if catastrophic_reason:
-        print(f'❌ BLOCKED: Catastrophic command detected!', file=sys.stderr)
-        print(f'', file=sys.stderr)
-        print(f'Reason: {catastrophic_reason}', file=sys.stderr)
-        print(f'Command: {cmd[:100]}', file=sys.stderr)
-        print(f'', file=sys.stderr)
-        print(f'This command could cause IRREVERSIBLE system damage or data loss.', file=sys.stderr)
-        sys.exit(2)
+    print(f'❌ BLOCKED: Catastrophic command detected!', file=sys.stderr)
+    print(f'', file=sys.stderr)
+    print(f'Reason: {catastrophic_reason}', file=sys.stderr)
+    print(f'Command: {cmd[:100]}', file=sys.stderr)
+    print(f'', file=sys.stderr)
+    print(f'This command could cause IRREVERSIBLE system damage or data loss.', file=sys.stderr)
+    sys.exit(2)
 
 # === LEVEL 2: CRITICAL PATH PROTECTION ===
 # Protected paths/filenames and their descriptions
