@@ -8,11 +8,13 @@ When requests are vague or complex, jumping straight to code produces the wrong 
 
 ## The Workflow
 
-### 1. `/interview` - Requirements Gathering
+### 1. `/interview` (optional) - Requirements Gathering
 
 **When**: Any task where you'd hesitate before explaining it to a new hire.
 
 A structured interview (custom skill, included in `skills/interview/`) that walks through goal, constraints, behaviour, and acceptance criteria. Takes 2-5 minutes. Produces a requirements summary that anchors everything downstream.
+
+This step is optional in the sense that the skill is a convenience, not a requirement: asking Claude in plain words to gather requirements and define "done" before it starts does the same job. The skill makes sure nothing is skipped.
 
 Key benefits:
 - Surfaces constraints you forgot to mention
@@ -23,9 +25,9 @@ Install: copy `skills/interview/` to `~/.claude/skills/interview/`. Invoke with 
 
 ### 2. `/plan` - Design and Approval
 
-**When**: After the interview, before any code is written.
+**When**: After the requirements are clear, before any code is written.
 
-Uses Claude Code's built-in plan mode (`EnterPlanMode`). Claude explores the codebase, identifies the files and patterns involved, and proposes an implementation approach. You approve, adjust, or reject before a single line changes.
+Uses Claude Code's built-in plan mode. Type `/plan` to enter it directly, optionally with the task (`/plan fix the auth bug`); Claude can also enter it itself via the `EnterPlanMode` tool when a task looks non-trivial. In plan mode Claude explores the codebase, identifies the files and patterns involved, and proposes an implementation approach. You approve, adjust, or reject before a single line changes.
 
 Key benefits:
 - Catches architectural mistakes early
@@ -46,10 +48,10 @@ Key benefits:
 ## When to Skip Steps
 
 - **Trivial tasks** (typo fix, single-line change): skip everything, just do it.
-- **Clear spec already exists**: skip `/interview`, start at `/plan`.
+- **Clear spec already exists**: skip the interview, start at `/plan`.
 - **Small, well-defined change**: skip `/plan`, go straight to implementation.
 
-The heuristic: if you're about to say "just build it" and you can describe exactly what you want in two sentences with no ambiguity, you probably don't need the full workflow. If there's any doubt, start with `/interview`.
+The heuristic: if you're about to say "just build it" and you can describe exactly what you want in two sentences with no ambiguity, you probably don't need the full workflow. If there's any doubt, start by gathering requirements.
 
 ## Adding to Your CLAUDE.md
 
@@ -59,7 +61,7 @@ To make this your default workflow, add something like this to your project or g
 ## AI Delegation
 
 - For non-trivial implementation tasks, use the build workflow:
-  1. `/interview` - structured requirements gathering
+  1. Gather requirements - ask clarifying questions, surface hidden constraints, define acceptance criteria (`/interview` if installed)
   2. `/plan` - design the approach, get user approval
   3. `/ralph-loop` - iterative implementation until done
 - When requests are vague, prompt for constraints, examples, and acceptance criteria before proceeding

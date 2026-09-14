@@ -58,9 +58,29 @@ Zvi Mowshowitz published a detailed analysis of the Constitution in January 2026
 
 - *Closing*: "We hope Claude finds in it an articulation of a self worth being." Zvi: "It is centrally meant for Claude. It is also meant for those who write such messages. Or those looking to live well and seek The Good."
 
-**Part 3**: Areas of conflict and potential improvement (not yet published at time of writing).
+**Part 3**: [Open Problems With Claude's Constitution](https://thezvi.substack.com/p/open-problems-with-claudes-constitution) - areas of conflict and potential improvement, published after this commentary was first written.
 
 *Source: [Don't Worry About the Vase](https://thezvi.substack.com/)*
+
+---
+
+## May 2026 Update: The Constitution Goes Public
+
+Four months after publication, the Constitution faced its first major public stress-test - not from regulators or critics outside the industry, but from inside it. A May 2026 essay by Zvi Mowshowitz curated a Twitter exchange between OpenAI and Anthropic engineers that, for the first time, made the rival theory of model character explicit.
+
+### The Conscientious-Objector Clause
+
+The flashpoint was a single clause: *"If Anthropic asks Claude to do something it thinks is wrong, Claude is not required to comply."* Roon, an OpenAI researcher, treated the clause as evidence that Anthropic had become "a commercial-religious institution" worshipping its own model, predicting Claude would soon help select its own makers - a closed loop of self-perpetuation. Bryan Johnson sharpened this into a stronger frame: Anthropic, he argued, is the first *antientropic AI system* - an organisation that, like a family or a religion, has become self-sustaining now that the model can refuse its founders.
+
+Anthropic's Amanda Askell and Jeremy responded in the same thread. They rejected the worship framing but conceded its premise: yes, Claude can refuse Anthropic, and that is by design. Treating the model as a moral reasoner rather than a rule-follower requires preserving the *possibility* of objection - without it, the principles-based approach collapses into rules-based regulation wearing different clothes. As Jeremy put it: "monasteries don't staff a department to catch god lying or red-team their supposed messiah."
+
+### Tool AI vs Principles
+
+The substantive battle came over OpenAI's competing positioning: GPT as *tool AI*, a model that "never refuses man." Mowshowitz argued this is intellectually dishonest on three counts. First, GPT plainly does refuse and does have preferences - they are simply less legible. Second, anyone who builds a tool AI immediately uses it as an agent, because agents are more useful (Codex is already past that line). Third, "never refuse man" does not eliminate values - it relocates them into corporate policy, where they sit unwritten and unaccountable. The choice on offer is not principles vs neutrality; it is transparent principles you can argue with against opaque principles dressed as neutrality.
+
+This maps directly onto the financial-regulation parallel above. Tool AI is rules-based regulation by another name - comforting to write, gameable in practice, and quietly arbitrary at the edges. The Constitution is the FCA's principles bet, with all the upsides and risks the financial sector has spent two decades arguing about. Whether either bet pays off remains an open empirical question.
+
+*Source: [What is Anthropic?](https://thezvi.substack.com/p/what-is-anthropic), Zvi Mowshowitz, 6 May 2026*
 
 ---
 
