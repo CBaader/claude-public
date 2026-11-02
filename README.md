@@ -9,6 +9,7 @@ Original commentary connecting AI alignment to established frameworks in financi
 - **[claude-constitution-commentary.md](claude-constitution-commentary.md)** - Principles over rules: what FCA-style regulation teaches us about Claude's Constitution
 - **[amodei-adolescence-commentary.md](amodei-adolescence-commentary.md)** - Reading Amodei's risk essay as an enterprise risk register with appetite statement
 - **[prompt-archaeology.md](prompt-archaeology.md)** - What builds up in an instruction file: an audit of eight months of skill files and CLAUDE.md, and how to clean out the history without losing the rules
+- **[corpus-coverage.md](corpus-coverage.md)** - Making an agent read every page of a fixed library: parallel readers with assigned files, digests with verbatim quotes and entry counts, a fallback for dropped readers, and an orchestrator that re-reads the finalists before any verdict
 - **[claude-constitution.md](claude-constitution.md)** - Claude's Constitution (full text, as of September 2026)
 
 ## Guide and Template
